@@ -61,6 +61,10 @@ int main() {
 		w = edge weight
 	*/
 
+	// open output file stream
+	ofstream fout;
+	fout.open("SneakyPathOutput.txt", ios::app);
+		
 	// open file stream and input file
 	char delim;
 	ifstream fin;
@@ -116,7 +120,7 @@ int main() {
 	}
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
-			E[i][j] = -1;  // -1 = no direct path exists or referencing self
+			E[i][j] = INF;  // unknown distance between nodes
 		}
 	}
 
@@ -127,7 +131,7 @@ int main() {
 	}
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
-			F[i][j] = 0;
+			F[i][j] = 0; // no known flow between nodes
 		}
 	}
 
@@ -138,8 +142,7 @@ int main() {
 	}
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
-			if (i == j) { next[i][j] = i; }
-			else { next[i][j] = -1; }
+			next[i][j] = -1; // next hop unknown
 		}
 	}
 
@@ -150,7 +153,7 @@ int main() {
 	}
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
-			L[i][j] = 0;
+			L[i][j] = 0; // total flow per edge unknown
 		}
 	}
 
@@ -162,13 +165,17 @@ int main() {
 	// initialize 1st row to "infinity"
 	i = 0;
 	for (j = 0; j < SIZE; j++) {
-		SneakyPath[i][j] = INF;
+		SneakyPath[i][j] = INF; // distance between nodes unknnown
 	}
-	// initialize rest of array to 0
-	for (i = 1; i < 3; i++) {
-		for (j = 0; j < SIZE; j++) {
-			SneakyPath[i][j] = 0;
-		}
+	// initialize second row to "WHITE"
+	i = 1;
+	for (j = 0; j < SIZE; j++) {
+		SneakyPath[i][j] = 0; // node color = "WHITE"
+	}
+	// initialize 3rd row to "NULL"
+	i = 2;
+	for (j = 0; j < SIZE; j++) {
+		SneakyPath[i][j] = -1; // came-from nodes unknown
 	}
 
 	// verify initialization on console
@@ -285,24 +292,13 @@ int main() {
 	//   (used when calculating shortest paths)
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
-			if (E[i][j] == -1) {
-				L[i][j] = -1;
-				E[i][j] = INF;
+			if (E[i][j] == INF) {
+				L[i][j] = -1; // no direct path between nodes
 			}
 		}
 	}
 
 	// verify initialization and assignment on console
-	cout << "Prepping matrices for algorithm application:" << endl << endl;
-	cout << "Matrix E" << endl;
-	for (i = 0; i < SIZE; i++) {
-		for (j = 0; j < SIZE; j++) {
-			cout << setw(11) << E[i][j];
-		}
-		cout << endl;
-	}
-	cout << endl;
-
 	cout << "Matrix L" << endl;
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
@@ -316,14 +312,10 @@ int main() {
 	// with Floyd-Warshall's Algorithm
 	for (int k = 0; k < SIZE; k++) {
 		for (i = 0; i < SIZE; i++) {
-			if (!( k == i )) {
-				for (j = 0; j < SIZE; j++) {
-					if (!( j == k )) {
-						if (E[i][k] + E[k][j] < E[i][j]) {
-							E[i][j] = E[i][k] + E[k][j];
-							next[i][j] = next[i][k];
-						}
-					}
+			for (j = 0; j < SIZE; j++) {
+				if (E[i][k] + E[k][j] < E[i][j]) {
+					E[i][j] = E[i][k] + E[k][j];
+					next[i][j] = next[i][k];
 				}
 			}
 		}
@@ -346,16 +338,6 @@ int main() {
 			cout << endl;
 		}
 		cout << endl;
-	}
-
-
-	// tidy up matrix E[] for readability
-	for (i = 0; i < SIZE; i++) {
-		for (j = 0; j < SIZE; j++) {
-			if (E[i][j] == INF) {
-				E[i][j] = -1;
-			}
-		}
 	}
 
 	// verify assignment on console
@@ -400,6 +382,14 @@ int main() {
 			}
 		}
 	}
+
+	//for (int i = 0; i < SIZE; i++) {
+	//	for (int j = 0; j < SIZE; j++) {
+	//		if (edgeMatrix[i][j] == BIG) {
+	//			totalFlowMatrix[i][j] = BIG;
+	//		}
+	//	}
+	//}
 
 	// verify calculations on console
 	cout << "Final Matrix L" << endl;
@@ -533,6 +523,9 @@ int main() {
 		<< "( " << vMinFrom + 1 << ", " << vMinTo + 1 << " ) with flow of " << wMinEdge << "." << endl
 		<< "The edge with the most amount of traffic on the path is "
 		<< "( " << vMaxFrom + 1 << ", " << vMaxTo + 1 << " ) with flow of " << wMaxEdge << "." << endl << endl;
+
+
 	
+	fout.close();
 	return 0;
 }
