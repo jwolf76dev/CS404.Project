@@ -1,0 +1,20 @@
+
+CS404FS16SneakyPathInput1.txt
+
+The path with the least amount of traffic from 6 to 3 is:
+{ 6, 2, 5, 3 }
+over a total of 3 hops and total traffic flow of 28.
+The average traffic per edge is 9.3333.
+The edge with the least amount of traffic on the path is ( 2, 5 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 6, 2 ) with flow of 16.
+
+
+CS404FS16SneakyPathInput1.txt
+
+The path with the least amount of traffic from 6 to 3 is:
+{ 6, 2, 5, 3 }
+over a total of 3 hops and total traffic flow of 28.
+The average traffic per edge is 9.3333.
+The edge with the least amount of traffic on the path is ( 2, 5 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 6, 2 ) with flow of 16.
+
