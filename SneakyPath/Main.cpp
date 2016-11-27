@@ -61,14 +61,18 @@ int main() {
 		w = edge weight
 	*/
 
+	string divider = "**************************************************";
+	
 	// open output file stream
 	ofstream fout;
 	fout.open("SneakyPathOutput.txt", ios::app);
-		
+	ofstream mout;
+	mout.open("SneakyPathMatrixOutput.txt", ios::app);
+	
 	// open input file stream and input file
 	char delim;
 	ifstream fin;
-	string fileName = "CS404FS16SneakyPathInput1.txt";
+	string fileName = "CS404FS16SneakyPathInputN75a.txt";
 	fin.open(fileName);
 	string line;
 	// exit if unable to open file
@@ -77,6 +81,9 @@ int main() {
 		system("pause");
 		return 1;
 	}
+
+	// output file name to log file
+	mout << endl << fileName << endl << endl;
 
 	// initialize node variables
 	char c; // placeholder for delimiter
@@ -91,7 +98,6 @@ int main() {
 	data >> n >> c >> startNode >> c >> endNode;
 
 	//// verify input on console
-	//string divider = "**************************************************";
 	//cout << divider << endl << "Matrix setup information:" << endl << divider << endl << endl;
 	//cout << n << ", " << startNode << ", " << endNode << endl << endl;
 
@@ -111,7 +117,7 @@ int main() {
 	int i;
 	int j;
 	int w;
-	const int INF = numeric_limits<int>::max() / 6;
+	const int INF = numeric_limits<int>::max() / 6; // numeric representation of "infinity"
 
 	// build arrays dynamically
 	// E[] = n x n array of edge weights
@@ -179,52 +185,52 @@ int main() {
 		SneakyPath[i][j] = INF; // came-from nodes unknown
 	}
 
-	//// verify initialization on console
-	//cout << divider << endl << "Initialize matrices:" << endl << divider << endl << endl;
-	//cout << "E[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << E[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	// verify initialization to log file
+	mout << divider << endl << "Initialize matrices:" << endl << divider << endl << endl;
+	mout << "E[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << E[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "F[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << F[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "F[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << F[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "L[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << L[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "L[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << L[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "next[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << next[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "next[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << next[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "SneakyPath[ ]" << endl;
-	//for (i = 0; i < 3; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << SneakyPath[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "SneakyPath[ ]" << endl;
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << SneakyPath[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
 	// build the E and F arrays from the input file
 	while (fin.good()) {
@@ -255,34 +261,34 @@ int main() {
 		else { ; }  // ignore invalid input
 	}
 
-	//// verify initialization and input on console
-	//cout << divider << endl << "Update matrices from input file:" << endl << divider << endl << endl;
-	//cout<<"Updated E[ ]"<<endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << E[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	// verify initialization and input to log file
+	mout << divider << endl << "Update matrices from input file:" << endl << divider << endl << endl;
+	mout<<"Updated E[ ]"<<endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << E[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "Updated F[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << F[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "Updated F[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << F[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "Index-adjusted next[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << next[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "Index-adjusted next[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << next[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
 	// close input file stream
 	fin.close();
@@ -297,15 +303,15 @@ int main() {
 		}
 	}
 
-	//// verify initialization and assignment on console
-	//cout << "Updated L[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << L[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	// verify initialization and assignment to log file
+	mout << "Updated L[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << L[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
 	// find shortest paths to all nodes and build next hop array
 	// with Floyd-Warshall's Algorithm
@@ -325,54 +331,54 @@ int main() {
 			}
 		}
 
-		//// verify each iteration on console
-		//cout << "Matrix E for k = " << k << endl;
-		//for (i = 0; i < SIZE; i++) {
-		//	for (j = 0; j < SIZE; j++) {
-		//		cout << setw(11) << E[i][j];
-		//	}
-		//	cout << endl;
-		//}
-		//cout << endl;
+		// verify each iteration to log file
+		mout << "Matrix E for k = " << k << endl;
+		for (i = 0; i < SIZE; i++) {
+			for (j = 0; j < SIZE; j++) {
+				mout << setw(11) << E[i][j];
+			}
+			mout << endl;
+		}
+		mout << endl;
 
-		//cout << "Matrix next for k = " << k << endl;
-		//for (i = 0; i < SIZE; i++) {
-		//	for (j = 0; j < SIZE; j++) {
-		//		cout << setw(11) << next[i][j];
-		//	}
-		//	cout << endl;
-		//}
-		//cout << endl;
+		mout << "Matrix next for k = " << k << endl;
+		for (i = 0; i < SIZE; i++) {
+			for (j = 0; j < SIZE; j++) {
+				mout << setw(11) << next[i][j];
+			}
+			mout << endl;
+		}
+		mout << endl;
 	}
 
-	//// verify assignment on console
-	//cout << divider << endl << "Final matrices with all paths:"<< endl << divider << endl << endl;
-	//cout << "Final E[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << E[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	// verify assignment to log file
+	mout << divider << endl << "Final matrices with all paths:"<< endl << divider << endl << endl;
+	mout << "Final E[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << E[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout << "Final next[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << next[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	mout << "Final next[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << next[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
-	//cout<<"F[ ]"<<endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout<<setw(11)<<F[i][j];
-	//	}
-	//	cout<<endl;
-	//}
-	//cout<<endl;
+	mout<<"F[ ]"<<endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout<<setw(11)<<F[i][j];
+		}
+		mout<<endl;
+	}
+	mout<<endl;
 
 	// initialize flow variables
 	int flow = 0;
@@ -407,15 +413,15 @@ int main() {
 		}
 	}
 
-	//// verify calculations on console
-	//cout << "Final L[ ]" << endl;
-	//for (i = 0; i < SIZE; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << L[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	// verify calculations to log file
+	mout << "Final L[ ]" << endl;
+	for (i = 0; i < SIZE; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << L[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
 	// find sneaky path with Dijkstra's Algorithm
 	// distance matrix L[] and path matrix SneakyPath[] initialized in an earlier step
@@ -483,15 +489,15 @@ int main() {
 		}
 	}
 
-	//// verify sneaky path matrix on console
-	//cout << "SneakyPath[ ]" << endl;
-	//for (i = 0; i < 3; i++) {
-	//	for (j = 0; j < SIZE; j++) {
-	//		cout << setw(11) << SneakyPath[i][j];
-	//	}
-	//	cout << endl;
-	//}
-	//cout << endl;
+	// verify sneaky path matrix to log file
+	mout << "SneakyPath[ ]" << endl;
+	for (i = 0; i < 3; i++) {
+		for (j = 0; j < SIZE; j++) {
+			mout << setw(11) << SneakyPath[i][j];
+		}
+		mout << endl;
+	}
+	mout << endl;
 
 	// analyze sneaky path
 	// initialize edge weight and path node variables
@@ -529,7 +535,7 @@ int main() {
 	}
 	HopPath.push(startNode);
 
-	// output data to console and data file
+	// output data console and data file
 	//cout << endl << fileName << endl << endl;
 	fout << endl << fileName << endl << endl;
 
@@ -564,5 +570,7 @@ int main() {
 		<< "( " << vMaxFrom + 1 << ", " << vMaxTo + 1 << " ) with flow of " << wMaxEdge << "." << endl << endl;
 	
 	fout.close();
+	mout.close();
+
 	return 0;
 }

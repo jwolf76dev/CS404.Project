@@ -9,12 +9,112 @@ The edge with the least amount of traffic on the path is ( 2, 5 ) with flow of 0
 The edge with the most amount of traffic on the path is ( 6, 2 ) with flow of 16.
 
 
-CS404FS16SneakyPathInput1.txt
+CS404FS16SneakyPathInputN10b.txt
 
-The path with the least amount of traffic from 6 to 3 is:
-{ 6, 2, 5, 3 }
-over a total of 3 hops and total traffic flow of 28.
-The average traffic per edge is 9.3333.
-The edge with the least amount of traffic on the path is ( 2, 5 ) with flow of 0.
-The edge with the most amount of traffic on the path is ( 6, 2 ) with flow of 16.
+The path with the least amount of traffic from 8 to 4 is:
+{ 8, 5, 9, 1, 4 }
+over a total of 4 hops and total traffic flow of 517.
+The average traffic per edge is 129.25.
+The edge with the least amount of traffic on the path is ( 9, 1 ) with flow of 36.
+The edge with the most amount of traffic on the path is ( 1, 4 ) with flow of 295.
+
+
+CS404FS16SneakyPathInputN10c.txt
+
+The path with the least amount of traffic from 5 to 9 is:
+{ 5, 7, 10, 2, 3, 1, 4, 9 }
+over a total of 7 hops and total traffic flow of 24.
+The average traffic per edge is 3.4286.
+The edge with the least amount of traffic on the path is ( 1, 4 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 4, 9 ) with flow of 14.
+
+
+CS404FS16SneakyPathInputN10d.txt
+
+The path with the least amount of traffic from 8 to 3 is:
+{ 8, 7, 3 }
+over a total of 2 hops and total traffic flow of 144.
+The average traffic per edge is 72.
+The edge with the least amount of traffic on the path is ( 8, 7 ) with flow of 21.
+The edge with the most amount of traffic on the path is ( 7, 3 ) with flow of 123.
+
+
+CS404FS16SneakyPathInputN15a.txt
+
+The path with the least amount of traffic from 3 to 4 is:
+{ 3, 14, 11, 6, 10, 13, 4 }
+over a total of 6 hops and total traffic flow of 115.
+The average traffic per edge is 19.167.
+The edge with the least amount of traffic on the path is ( 11, 6 ) with flow of 1.
+The edge with the most amount of traffic on the path is ( 10, 13 ) with flow of 27.
+
+
+CS404FS16SneakyPathInputN15b.txt
+
+The path with the least amount of traffic from 6 to 14 is:
+{ 6, 8, 9, 1, 12, 3, 11, 13, 14 }
+over a total of 8 hops and total traffic flow of 26.
+The average traffic per edge is 3.25.
+The edge with the least amount of traffic on the path is ( 3, 11 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 1, 12 ) with flow of 12.
+
+
+CS404FS16SneakyPathInputN20a.txt
+
+The path with the least amount of traffic from 1 to 5 is:
+{ 1, 5 }
+over a total of 1 hops and total traffic flow of 0.
+The average traffic per edge is 0.
+The edge with the least amount of traffic on the path is ( 1, 5 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 1, 1 ) with flow of 0.
+
+
+CS404FS16SneakyPathInputN25a.txt
+
+The path with the least amount of traffic from 4 to 9 is:
+{ 4, 1, 14, 11, 10, 6, 18, 23, 15, 9 }
+over a total of 9 hops and total traffic flow of 562.
+The average traffic per edge is 62.444.
+The edge with the least amount of traffic on the path is ( 15, 9 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 4, 1 ) with flow of 182.
+
+
+CS404FS16SneakyPathInputN30a.txt
+
+The path with the least amount of traffic from 3 to 26 is:
+{ 3, 4, 26 }
+over a total of 2 hops and total traffic flow of 300.
+The average traffic per edge is 150.
+The edge with the least amount of traffic on the path is ( 4, 26 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 3, 4 ) with flow of 300.
+
+
+CS404FS16SneakyPathInputN35a.txt
+
+The path with the least amount of traffic from 33 to 23 is:
+{ 33, 2, 28, 31, 23 }
+over a total of 4 hops and total traffic flow of 0.
+The average traffic per edge is 0.
+The edge with the least amount of traffic on the path is ( 31, 23 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 1, 1 ) with flow of 0.
+
+
+CS404FS16SneakyPathInputN50a.txt
+
+The path with the least amount of traffic from 2 to 49 is:
+{ 2, 8, 14, 20, 26, 32, 37, 43, 49 }
+over a total of 8 hops and total traffic flow of 0.
+The average traffic per edge is 0.
+The edge with the least amount of traffic on the path is ( 43, 49 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 1, 1 ) with flow of 0.
+
+
+CS404FS16SneakyPathInputN75a.txt
+
+The path with the least amount of traffic from 2 to 49 is:
+{ 2, 4, 8, 13, 17, 21, 26, 31, 35, 40, 45, 49 }
+over a total of 11 hops and total traffic flow of 0.
+The average traffic per edge is 0.
+The edge with the least amount of traffic on the path is ( 45, 49 ) with flow of 0.
+The edge with the most amount of traffic on the path is ( 1, 1 ) with flow of 0.
 
