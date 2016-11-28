@@ -97,9 +97,9 @@ int main() {
 	istringstream data(line);
 	data >> n >> c >> startNode >> c >> endNode;
 
-	//// verify input on console
-	//cout << divider << endl << "Matrix setup information:" << endl << divider << endl << endl;
-	//cout << n << ", " << startNode << ", " << endNode << endl << endl;
+	// verify input to log file
+	mout << divider << endl << "Matrix setup information:" << endl << divider << endl << endl;
+	mout << n << ", " << startNode << ", " << endNode << endl << endl;
 
 	// adjust nodes for index references
 	startNode -= 1;
@@ -108,9 +108,9 @@ int main() {
 	// make number of nodes constant
 	const int SIZE = n;
 
-	//// verify adjustments on console
-	//cout << "Index-adjusted values:" << endl << endl;
-	//cout << n << ", " << startNode << ", " << endNode << endl << endl;
+	// verify adjustments to log file
+	mout << "Index-adjusted values:" << endl << endl;
+	mout << n << ", " << startNode << ", " << endNode << endl << endl;
 
 	// initialize matrix variables
 	char m;
@@ -172,7 +172,7 @@ int main() {
 	// initialize 1st row to "infinity"
 	i = 0;
 	for (j = 0; j < SIZE; j++) {
-		SneakyPath[i][j] = INF; // distance between nodes unknnown
+		SneakyPath[i][j] = INF; // distance between nodes unknown
 	}
 	// initialize second row to "WHITE"
 	i = 1;
@@ -248,15 +248,15 @@ int main() {
 			E[i][j] = w;
 			next[i][j] = j;
 
-			//// verify input on console
-			//cout << m << ", " << i + 1 << ", " << j + 1 << ", " << E[i][j] << endl << endl;
-			//cout << "next[" << i + 1 << "," << j + 1 << "] = " << j + 1 << endl << endl;
+			// verify input to log file
+			mout << m << ", " << i + 1 << ", " << j + 1 << ", " << E[i][j] << endl << endl;
+			mout << "next[" << i + 1 << "," << j + 1 << "] = " << j + 1 << endl << endl;
 		}
 		else if (m == 'F') {
 			F[i][j] = w;
 
-			//// verify input on console
-			//cout << m << ", " << i + 1 << ", " << j + 1 << ", " << F[i][j] << endl << endl;
+			// verify input to log file
+			mout << m << ", " << i + 1 << ", " << j + 1 << ", " << F[i][j] << endl << endl;
 		}
 		else { ; }  // ignore invalid input
 	}
@@ -315,7 +315,7 @@ int main() {
 
 	// find shortest paths to all nodes and build next hop array
 	// with Floyd-Warshall's Algorithm
-	//cout << divider << endl << "Find shortest paths to all nodes with Floyd-Warshall:" << endl << divider << endl << endl;
+	mout << divider << endl << "Find shortest paths to all nodes with Floyd-Warshall:" << endl << divider << endl << endl;
 
 	for (int k = 0; k < SIZE; k++) {
 		for (i = 0; i < SIZE; i++) {
@@ -413,7 +413,7 @@ int main() {
 		}
 	}
 
-	// verify calculations to log file
+	// verify calculations and updates to log file
 	mout << "Final L[ ]" << endl;
 	for (i = 0; i < SIZE; i++) {
 		for (j = 0; j < SIZE; j++) {
@@ -490,6 +490,7 @@ int main() {
 	}
 
 	// verify sneaky path matrix to log file
+	mout << divider << endl << "Final SneakyPath after Dijkstra's:" << endl << divider << endl << endl;
 	mout << "SneakyPath[ ]" << endl;
 	for (i = 0; i < 3; i++) {
 		for (j = 0; j < SIZE; j++) {
@@ -535,7 +536,7 @@ int main() {
 	}
 	HopPath.push(startNode);
 
-	// output data console and data file
+	// output data to console and data file
 	//cout << endl << fileName << endl << endl;
 	fout << endl << fileName << endl << endl;
 
