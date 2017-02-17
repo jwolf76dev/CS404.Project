@@ -1,7 +1,7 @@
 # CS404.Project
 Shortest Path implementations of Floyd-Warshall and Dijkstra's Algorithms
 
-Fall 2016 - Dr. Appie van de Liefvoort
+UMKC Fall 2016, Dr. Appie van de Liefvoort
 
 **Summary**  
 Finding an optimal path in a network is not always the shortest path, shortest distance, or cheapest cost, but rather: most
